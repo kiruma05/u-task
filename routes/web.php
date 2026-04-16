@@ -8,3 +8,4 @@ Route::get('/', [UploadController::class, 'index'])->name('uploads.index');
 Route::post('/uploads', [UploadController::class, 'store'])->name('uploads.store');
 
 Route::get('/records', [RecordController::class, 'index'])->name('records.index');
+Route::get('/records/export', [RecordController::class, 'export'])->name('records.export');

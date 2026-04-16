@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RecordsExport;
 use App\Models\Record;
 use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class RecordController extends Controller
 {
@@ -63,5 +66,19 @@ class RecordController extends Controller
             'sortCol',
             'sortDir'
         ));
+    }
+
+    public function export(Request $request): BinaryFileResponse
+    {
+        $search   = trim($request->input('search', '')) ?: null;
+        $uploadId = $request->integer('upload_id') ?: null;
+
+        $filename = collect([
+            'records',
+            $uploadId ? "upload{$uploadId}" : 'all',
+            now()->format('Y_m_d_His'),
+        ])->implode('_') . '.xlsx';
+
+        return Excel::download(new RecordsExport($search, $uploadId), $filename);
     }
 }

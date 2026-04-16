@@ -105,6 +105,22 @@
 
         .btn-reset:hover { background: #e0e0e0; }
 
+        .btn-export {
+            padding: 8px 16px;
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            align-self: flex-end;
+        }
+
+        .btn-export:hover { background: #1e8449; }
+
         /* ── Meta bar ── */
         .meta-bar {
             display: flex;
@@ -267,6 +283,10 @@
 
                 <button type="submit" class="btn-filter">Apply</button>
                 <a href="{{ route('records.index') }}" class="btn-reset">Reset</a>
+                <a href="{{ route('records.export', array_filter(['search' => $search, 'upload_id' => $uploadId])) }}"
+                   class="btn-export">
+                    &#8595; Export Excel
+                </a>
             </div>
         </form>
     </div>
