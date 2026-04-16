@@ -112,8 +112,15 @@
 <body>
 <div class="container">
 
-    <h1>Big Data CSV Manager</h1>
-    <p class="subtitle">Upload large CSV files — rows are processed in chunks and stored as structured records.</p>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;">
+        <div>
+            <h1>Big Data CSV Manager</h1>
+            <p class="subtitle">Upload large CSV files — rows are processed in chunks and stored as structured records.</p>
+        </div>
+        <a href="{{ route('records.index') }}" style="font-size:.85rem;color:#3498db;text-decoration:none;">
+            View All Records &rarr;
+        </a>
+    </div>
 
     {{-- Success message --}}
     @if (session('success'))
